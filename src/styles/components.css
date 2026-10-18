@@ -2481,6 +2481,14 @@ html.lenis body {
     :is(.slab__shadow, [data-layer]) {
     will-change: transform;
   }
+  /* The slot is a flat plane at z=0; when the front card tilts, half of it dips
+     behind that plane and the empty slot would swallow clicks meant for its links. */
+  .work[data-presenting] .orbit__slot {
+    pointer-events: none;
+  }
+  .work[data-presenting] .slab {
+    pointer-events: auto;
+  }
   .work[data-presenting] .orbit__slot:not([data-active]) .card {
     pointer-events: none;
   }

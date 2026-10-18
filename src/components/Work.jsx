@@ -449,7 +449,11 @@ export function Work() {
             goTo(i);
           }
         };
-        const onFocus = () => goTo(i, true);
+        // Keyboard focus only: a mouse press also focuses the link, and gliding
+        // then would slide the card out from under the pointer mid-click.
+        const onFocus = (e) => {
+          if (e.target.matches(":focus-visible")) goTo(i, true);
+        };
         c.slot.addEventListener("click", onClick);
         c.slot.addEventListener("focusin", onFocus);
         return () => {
