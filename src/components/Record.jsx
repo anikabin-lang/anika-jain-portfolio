@@ -121,16 +121,21 @@ export function Record() {
 
         <Block index={4} label="Certifications & workshops" id="record-certs">
           <ul className="record__certs">
-            {certifications.map((c) => (
-              <li key={c.name} className="record__cert" data-rise-group="">
-                <p data-words="" className="record__cert-name">
-                  {c.name}
-                </p>
-                <p data-words="" className="record__meta">
-                  {[c.by, c.note, c.when].filter(Boolean).join(" · ")}
-                </p>
-              </li>
-            ))}
+            {certifications.map((c) => {
+              const meta = [c.by, c.note, c.when].filter(Boolean).join(" · ");
+              return (
+                <li key={c.name} className="record__cert" data-rise-group="">
+                  <p data-words="" className="record__cert-name">
+                    {c.name}
+                  </p>
+                  {meta && (
+                    <p data-words="" className="record__meta">
+                      {meta}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </Block>
 

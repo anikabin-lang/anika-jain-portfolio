@@ -221,7 +221,7 @@ export const certifications = [
   { name: "ServiceNow AI Foundation", by: "FutureSkills Prime" },
   { name: "GenAI & Prompt Engineering", by: "AILytics × HackWithIndia", note: "Workshop" },
   { name: "Full-Stack Web Development", note: "One-week workshop" },
-  { name: "SRM Builds 7.0, Verge 2026", note: "Certificate of participation" },
+  { name: "SRM Builds 7.0, Verge 2026" },
 ];
 
 export const campus = [
