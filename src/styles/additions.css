@@ -1,0 +1,531 @@
+/* Additions for Anika's content: the portrait framing and wordmark, the extra
+   contact row on the badge, longer project copy, and the resume sections. */
+
+@layer components {
+  /* ——— Wordmark ——————————————————————————————————————————————— */
+  .logo {
+    display: block;
+    color: var(--color-ink);
+    overflow: visible;
+  }
+  .badge__logo {
+    width: calc(var(--u) * 96);
+    height: auto;
+    color: #1b1815d9;
+  }
+  .badge__logo path {
+    stroke-width: 1.7px;
+  }
+
+  /* ——— Portrait: framed on her face, not the default 22% from the top. */
+  .badge__portrait {
+    object-position: 50% 40%;
+  }
+
+  /* ——— Badge back: five contact rows + QR ——————————————————————— */
+  .badge__back-name {
+    font-size: calc(var(--u) * 25);
+    letter-spacing: 0.14em;
+  }
+  .badge__back-role {
+    top: calc(var(--u) * 116);
+  }
+  .badge__links {
+    top: calc(var(--u) * 140);
+  }
+  .badge__link {
+    height: calc(var(--u) * 38);
+    grid-template-columns: calc(var(--u) * 72) 1fr calc(var(--u) * 14);
+  }
+  .badge__link-value {
+    font-size: calc(var(--u) * 13.5);
+  }
+  .badge__link[data-contact="phone"]:hover .badge__link-icon,
+  .badge__link[data-contact="phone"][data-focus] .badge__link-icon {
+    transform: rotate(-12deg);
+  }
+  .badge__scan {
+    top: calc(var(--u) * 352);
+  }
+  .badge__scan-plate {
+    width: calc(var(--u) * 84);
+    height: calc(var(--u) * 84);
+    padding: calc(var(--u) * 8);
+  }
+
+  /* ——— Hero ———————————————————————————————————————————————————— */
+  .hero__closing {
+    text-wrap: balance;
+    max-width: 11.5em;
+  }
+
+  /* ——— Project cards: summary line and secondary link ———————————— */
+  .card__summary {
+    max-width: 34em;
+    margin-top: 2.2cqw;
+    font-family: var(--font-display);
+    font-size: clamp(0.875rem, 1.75cqw, 1.2rem);
+    line-height: 1.45;
+    color: rgb(var(--soft));
+    text-wrap: pretty;
+  }
+  .card__actions {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.1rem;
+  }
+  .card__aside {
+    font-size: clamp(0.8125rem, 1.45cqw, 1rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    color: rgb(var(--ink));
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--ink) / 0.3);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.5s var(--ease-out-expo);
+  }
+  .card__aside:hover,
+  .card__aside:focus-visible {
+    text-decoration-color: currentColor;
+  }
+  .card__stack {
+    row-gap: 0;
+  }
+  @container card not (min-width: 520px) {
+    .card__summary {
+      margin-top: 4cqw;
+      font-size: clamp(0.875rem, 3.6cqw, 1rem);
+    }
+    .card__actions {
+      gap: 0.9rem;
+    }
+  }
+  /* Tall mobile cards have room for the summary; very short ones do not. */
+  @container card (max-height: 330px) {
+    .card__summary {
+      display: none;
+    }
+  }
+  .card {
+    container-type: size;
+  }
+
+  /* ——— Process: long verbs shrink to fit their sheet ——————————————— */
+  .process__face {
+    container-type: inline-size;
+  }
+  .process__verb {
+    font-size: min(clamp(2.75rem, 3.7vw, 3.75rem), 17.5cqi);
+  }
+  .process__name em {
+    text-wrap: balance;
+  }
+  .process {
+    background: #f8f6f2;
+    padding-bottom: clamp(96px, 16vh, 180px);
+  }
+
+  /* ——— Resume ("On the record") ——————————————————————————————— */
+  .record {
+    --gutter: 24px;
+    position: relative;
+    z-index: 19;
+    padding: clamp(24px, 4vh, 48px) var(--gutter) calc(30vh + clamp(32px, 6vh, 72px));
+    background: linear-gradient(#f8f6f2 0 calc(100% - 30vh), #f8f6f200 100%);
+    color: var(--color-ink);
+  }
+  .record__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: clamp(40px, 7.5vh, 84px);
+  }
+  .record__eyebrow {
+    font-family: var(--font-grotesk);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--color-ink-soft);
+  }
+  .record__title {
+    margin-top: clamp(12px, 2.2svh, 22px);
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, min(5.4vw, 8.2svh), 6rem);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+  .record__title em {
+    color: var(--color-cobalt);
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+  .record [data-words] {
+    display: block;
+    transform-origin: 50% 100%;
+  }
+  .record__blocks {
+    max-width: 1320px;
+    margin-inline: auto;
+  }
+  .record__block {
+    display: grid;
+    gap: 1.25rem;
+    padding: clamp(28px, 4.4vh, 48px) 0 clamp(36px, 6vh, 64px);
+    border-top: 1px solid #1b181529;
+  }
+  .record__label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    color: var(--color-ink-soft);
+  }
+  .record__index {
+    color: var(--color-cobalt);
+  }
+  .record__body {
+    min-width: 0;
+  }
+
+  /* Awards */
+  .record__awards {
+    display: grid;
+    gap: 2.25rem;
+  }
+  .record__award {
+    position: relative;
+    padding-top: 1rem;
+  }
+  .record__award::before,
+  .record__row::before,
+  .record__skill::before,
+  .record__cert::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #1b181521;
+  }
+  .record__tag {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--color-cobalt);
+  }
+  .record__seal {
+    flex: none;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--color-cobalt);
+  }
+  .record__award-title {
+    margin-top: 0.9rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.6vw, 2.6rem);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+  .record__text {
+    max-width: 34rem;
+    margin-top: 0.75rem;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--color-ink-soft);
+    text-wrap: pretty;
+  }
+  .record__meta {
+    margin-top: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: var(--color-ink-faint);
+  }
+  .record__cta {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+    padding-bottom: 0.35rem;
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .record__cta::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform-origin: 0;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .record__cta:hover::after {
+    transform: scaleX(0.55);
+  }
+  .record__cta span {
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .record__cta:hover span {
+    transform: translate(2px, -2px);
+  }
+
+  /* Rows (education, campus) */
+  .record__rows {
+    display: grid;
+  }
+  .record__row {
+    position: relative;
+    display: grid;
+    gap: 0.45rem 1.5rem;
+    padding: 1.05rem 0 1.15rem;
+  }
+  .record__row:first-child::before {
+    display: none;
+  }
+  .record__row:first-child {
+    padding-top: 0.2rem;
+  }
+  .record__when {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    color: var(--color-ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .record__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 1.9vw, 1.85rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .record__name--sm {
+    font-size: clamp(1.125rem, 1.45vw, 1.4rem);
+  }
+  .record__note {
+    color: var(--color-ink-faint);
+  }
+  .record__sub {
+    margin-top: 0.3rem;
+    font-size: 1rem;
+    line-height: 1.45;
+    color: var(--color-ink-soft);
+  }
+  .record__aside {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    align-items: baseline;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.6;
+    color: var(--color-ink-faint);
+  }
+  .record__aside strong {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--color-cobalt);
+  }
+
+  /* Skills */
+  .record__skills {
+    display: grid;
+    gap: 0 2.5rem;
+  }
+  .record__skill {
+    position: relative;
+    padding: 0.95rem 0 1.05rem;
+  }
+  .record__skill dt {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.3;
+    color: var(--color-ink-soft);
+  }
+  .record__skill dd {
+    margin-top: 0.55rem;
+  }
+  .record__slashed {
+    display: flex;
+    flex-wrap: wrap;
+    font-family: var(--font-grotesk);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+  .record__slash {
+    margin: 0 0.45em;
+    font-weight: 300;
+    opacity: 0.4;
+  }
+
+  /* Certifications */
+  .record__certs {
+    display: grid;
+    gap: 0 2.5rem;
+  }
+  .record__cert {
+    position: relative;
+    padding: 0.85rem 0 0.95rem;
+  }
+  .record__cert-name {
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .record__cert .record__meta {
+    margin-top: 0.35rem;
+  }
+
+  /* Campus & learning */
+  .record__split {
+    display: grid;
+    gap: 2rem 3rem;
+  }
+  .record__kicker {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+  .record__learning ul {
+    margin-top: 0.9rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .record__course {
+    display: grid !important;
+    gap: 0.35rem;
+    padding: 1rem 1.1rem 1.05rem;
+    border-radius: 10px;
+    background: #ffffff8c;
+    box-shadow:
+      inset 0 0 0 1px #1b181514,
+      0 1px 2px #3c2d1e0f;
+  }
+  .record__course .record__meta {
+    margin-top: 0;
+  }
+  .record__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: var(--color-ink);
+  }
+  .record__dot {
+    position: relative;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-moss);
+  }
+  .record__dot::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border: 1px solid var(--color-moss);
+    border-radius: 50%;
+    opacity: 0;
+    animation: 3s ease-out infinite badge-pulse;
+  }
+
+  @media (min-width: 640px) {
+    .record {
+      --gutter: 40px;
+    }
+    .record__skills,
+    .record__certs {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .record__row--edu {
+      grid-template-columns: 9rem minmax(0, 1fr);
+    }
+    .record__row--edu .record__aside {
+      grid-column: 2;
+    }
+    .record__row--campus {
+      grid-template-columns: 9rem minmax(0, 1fr);
+    }
+  }
+  @media (min-width: 1024px) {
+    .record {
+      --gutter: 48px;
+    }
+    .record__block {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 0 1.5rem;
+    }
+    .record__label {
+      grid-column: span 3 / span 3;
+      align-self: start;
+      padding-top: 0.35rem;
+    }
+    .record__body {
+      grid-column: 4 / span 9;
+    }
+    .record__awards {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem;
+    }
+    .record__row--edu {
+      grid-template-columns: 9.5rem minmax(0, 1fr) 13rem;
+      align-items: baseline;
+    }
+    .record__row--edu .record__aside {
+      grid-column: 3;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+    }
+    .record__split {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .record__dot::after {
+      animation: none;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+# Dependencies and build output
+node_modules
+dist
+
+# Environment / secrets
+.env
+.env.*
+*.local
+.vercel
+
+# Logs and OS files
+npm-debug.log*
+*.log
+.DS_Store
+
+# Source originals kept out of the public repo:
+# - the raw group photo shows other people; only the edited crop in
+#   public/images/ is published (rebuild it with scripts/make-portrait.py)
+# - the resume is already served from public/files/
+Anika.jpeg
+Anika Jain Resume-final.pdf
