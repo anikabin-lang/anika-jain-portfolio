@@ -162,7 +162,7 @@ export function Badge() {
           </span>
           <span className="badge__scan-copy">
             <span className="badge__link-label">QR code</span>
-            <span className="badge__scan-line">Scan to email</span>
+            <span className="badge__scan-line">Scan to visit</span>
           </span>
         </button>
       </div>

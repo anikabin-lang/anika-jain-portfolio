@@ -5,9 +5,8 @@ import { writeFileSync } from "node:fs";
 const codes = {
   // Front of the badge: GitHub profile.
   front: { text: "https://github.com/anikabin-lang", ecc: "L" },
-  // Back of the badge ("Scan to connect"): opens a new email. Swap for the
-  // deployed portfolio URL once it exists.
-  back: { text: "mailto:anika.bin@gmail.com", ecc: "M" },
+  // Back of the badge ("Scan to visit"): the live portfolio.
+  back: { text: "https://anikajain.runs-on.dev/", ecc: "M" },
 };
 
 const toPath = ({ modules }) => {
