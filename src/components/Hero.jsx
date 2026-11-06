@@ -166,7 +166,7 @@ export function Hero() {
                 className="block w-fit origin-bottom-left rotate-[-4deg] whitespace-nowrap font-script text-[1.62em] font-normal leading-[0.86] tracking-normal text-cobalt"
               >
                 I’m {site.name}
-                <span className="sr-only">,</span>
+                <span className="sr-only"> Jain,</span>
               </span>
               <span data-reveal="rise" style={HIDDEN.rise} className="hero__closing block italic">
                 {site.hero.closing}

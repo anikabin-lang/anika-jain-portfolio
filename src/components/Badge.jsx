@@ -70,7 +70,7 @@ export function Badge() {
           className="badge__portrait"
           data-badge-portrait=""
           src={site.portrait.src}
-          alt=""
+          alt={`Portrait of ${site.fullName}`}
           width={site.portrait.width}
           height={site.portrait.height}
           draggable="false"
